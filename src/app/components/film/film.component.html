@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div *ngFor="let film of films" class="card mr-4 shadow">
+            <img src="#" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{film.title}}</h5>
+                <p class="card-text">{{film.author}}</p>
+                <p class="card-text">{{film.description}}</p>
+                <p class="card-text">{{film.rate}}</p>
+            </div>
+            <a href="#" (click)="delete(film)"><i class="fa fa-trash"></i></a>
+        </div>
+    </div>
+</div>

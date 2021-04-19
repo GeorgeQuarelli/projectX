@@ -1,0 +1,46 @@
+{
+    "film": [ 
+        {
+        "id": 1,
+        "title": "Dragon Trainer",
+        "author": "Dreamworks",
+        "rate": 8,
+        "description": "test ciao ciao"
+        },
+        {
+        "id": 2,
+        "title": "Shrek",
+        "author": "Dreamworks",
+        "rate": 9,
+        "description": "test ciao ciao"
+        },
+        {
+        "id": 3,
+        "title": "Up",
+        "author": "Pixar",
+        "rate": 8,
+        "description": "test ciao ciao"
+        },
+        {
+        "id": 4,
+        "title": "Oceania",
+        "author": "Disney",
+        "rate": 9,
+        "description": "test ciao ciao"
+        },
+        {
+        "id": 5,
+        "title": "Soul",
+        "author": "Pixar",
+        "rate": 7,
+        "description": "test ciao ciao"
+        },
+        {
+        "id": 6,
+        "title": "Raya e l'ultimo drago",
+        "author": "Disney",
+        "rate": 7,
+        "description": "test ciao ciao"
+        }
+    ]
+}
