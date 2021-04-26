@@ -1,0 +1,71 @@
+.card img {
+  min-height: 9rem;
+  max-height: 10rem;
+  background-color: rgb(114, 114, 114);
+}
+.card {
+  position: relative;
+  width: 12rem;
+  height: 18.5rem;
+  margin: 1rem;
+  border-radius: 0px;
+  background: rgba(22, 22, 22, 0.822);
+  overflow: hidden;
+  border: none;
+  backdrop-filter: blur(5px);
+  color: white;
+}
+
+.delete i {
+  color: white;
+}
+
+.delete {
+  position: absolute;
+  left: 11rem;
+  top: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.card-body {
+  min-height: 13rem;
+  text-align: center;
+}
+
+.card-body h5 {
+  font-size: 1.2rem;
+}
+
+.rate {
+  justify-content: center;
+}
+
+.title-card {
+  min-height: 5rem;
+}
+
+.form-create {
+  background: rgba(26, 26, 26, 0.952);
+}
+
+.title-form {
+  justify-content: center;
+  color: white;
+  margin-top: 2rem;
+}
+
+.title-form h5 {
+  font-size: 1.5rem;
+}
+
+.active {
+  border: 2px solid limegreen;
+}
+
+.preview {
+  height: 120px;
+}
+
+.preview-container {
+  display: none;
+}

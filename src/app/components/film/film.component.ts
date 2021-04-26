@@ -14,6 +14,8 @@ export class FilmComponent implements OnInit {
 
   films: Film[] | any;
   error: any;
+  active: Film | any;
+  imageSrc: string | any;
 
   constructor(private http : HttpClient) { }
 
@@ -31,13 +33,53 @@ export class FilmComponent implements OnInit {
     });
   }
 
-  delete(film: Film){
+  delete(event: { stopPropagation: () => void; }, film: Film){
+    event.stopPropagation();
     //const index = this.films.indexOf(film);
     this.http.delete<Film>(`${ApiUrl}/${film.id}`).subscribe(()=>{
       const index = this.films.findIndex( (f: { id: number; }) => f.id === film.id);
       this.films.splice(index,1);
     });
   }
+
+  setActive(film: Film) {
+    this.active = film;
+  }
+  
+  reset(form: NgForm) {
+    this.active = null;
+    this.imageSrc = null;
+    form.reset();
+  }
+
+  save(form: NgForm){
+    if(this.active){
+      this.edit(form);
+    } else {
+      this.add(form);
+    }
+
+  }
+
+  edit(form: NgForm){
+    this.http.patch<Film>(`${ApiUrl}/${this.active.id}`,form.value)
+    .subscribe(res =>{
+      const index = this.films.findIndex( (f: { id: number; }) => f.id === this.active.id);
+      this.films[index] =res;
+    })
+  }
+
+  readUrl(event:any){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      const[file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload= ()=> {
+        this.imageSrc = reader.result as string;
+      }
+    }
+  }
+
 
   ngOnInit(): void {
     this.getAll();

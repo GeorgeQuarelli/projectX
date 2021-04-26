@@ -1,32 +1,62 @@
-<div class="container mt-5 mb-5">
-    <div *ngIf="error" class="alert alert-danger">Error</div>
-    <div class="row">
-        <div *ngFor="let film of films" class="card mr-4 mt-4 shadow">
-            <img src="#" alt="">
+<div class="container-fluid mt-5 mb-5 d-flex">
+    <div *ngIf="error" class="alert alert-danger">Error non ci sono dati</div>
+    <!-- CONTAINER FILM -->
+    <div class="row col-lg-8 ">
+        <div *ngFor="let film of films" class="card mr-4 mt-4 shadow" [ngClass]="{'active': film.id === active?.id}"
+            (click)="setActive(film)">
+            <img [src]="film.img ? film.img : '../assets/thumbnails/img-nf.jpg'" alt="">
             <div class="card-body">
-                <h5 class="card-title">{{film.title}}</h5>
-                <p class="card-text">{{film.author}}</p>
-                <p class="card-text">{{film.description}}</p>
-                <p [style.color]="film.rate >= 7 ? 'orange' : 'red' " class="card-text">{{film.rate}}</p>
+                <div class="title-card">
+                    <h5 class="card-title mb-0">{{film.title}}</h5>
+                    <small class="card-text">{{film.author}}</small>
+                </div>
+                <div class="rate d-flex mt-2">
+                    <p class="mr-2">voto: </p>
+                    <p [style.color]="film.rate >= 7 ? 'limegreen' : 'red' " class="card-text">{{film.rate}}</p>
+                </div>
             </div>
-            <a href="#" (click)="delete(film)"><i class="fa fa-trash ml-5"></i></a>
+            <div class="delete d-flex">
+                <i (click)="delete($event,film)" class="fa fa-times" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
-    <div>
-        <form #f="ngForm" (submit)="add(f)" class="col-lg-5 mt-5">
+    <!-- CONTAINER FILM -->
+
+    <!-- FORM EDIT -->
+    <div class="form-create col-lg-4">
+
+        <div class="d-flex title-form">
+            <h5>Edita e inserisci nuovi film</h5>
+        </div>
+
+        <form #f="ngForm" (submit)="save(f)" class="col-lg-12 mt-4">
             <div class="form-group">
-                <input [ngModel] type="text" class="form-control" name="title" placeholder="titolo">
+                <input [ngModel]="active?.title" type="text" class="form-control" name="title" placeholder="titolo">
             </div>
             <div class="form-group">
-                <input [ngModel] type="text" class="form-control" name="author" placeholder="autore">
+                <input [ngModel]="active?.author" type="text" class="form-control" name="author" placeholder="autore">
             </div>
             <div class="form-group">
-                <input [ngModel] type="number" class="form-control" name="rate" placeholder="voto">
+                <input [ngModel]="active?.rate" type="number" class="form-control" name="rate" placeholder="voto">
             </div>
             <div class="form-group">
-                <input [ngModel] type="text" class="form-control" name="description" placeholder="descrizione">
+                <input [ngModel]="active?.description" type="text" class="form-control" name="description"
+                    placeholder="descrizione">
             </div>
-            <button type="submit" class="btn btn-primary">inserisci</button>
+            <div class="form-group">
+                <input type="file" class="preview-container" name="img" (change)="readUrl($event)" #selectedFile>
+                <button type="button" class="btn btn-primary mb-3" (click)="selectedFile.click()"> inserisci un immagine
+                </button>
+            </div>
+            <div>
+                <img *ngIf="this.imageSrc" [src]="this.imageSrc" alt="preview" class="preview mb-3">
+            </div>
+            <input *ngIf="this.imageSrc" [ngModel]="this.imageSrc" type="hidden" name="img">
+            <button type="submit" class="btn btn-primary">{{active ? 'Aggiorna' : 'Aggiungi'}}</button>
+            <button type="button" class="btn btn-warning ml-4" (click)="reset(f)">Reset</button>
         </form>
     </div>
+    <!-- FORM EDIT -->
+
+
 </div>

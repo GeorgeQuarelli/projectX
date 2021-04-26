@@ -4,4 +4,5 @@ export interface Film {
     author: string;
     rate: number;
     description: string;
+    img: string;
 }
