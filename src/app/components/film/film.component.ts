@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Film } from 'src/app/model/film';
 
@@ -30,6 +30,8 @@ export class FilmComponent implements OnInit {
   add(form: NgForm) {
     this.http.post<Film>(`${ApiUrl}`,form.value).subscribe((res:Film) => {
       this.films.push(res);
+      form.reset();
+      this.imageSrc = null;
     });
   }
 
@@ -74,9 +76,15 @@ export class FilmComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const[file] = event.target.files;
       reader.readAsDataURL(file);
-      reader.onload= ()=> {
-        this.imageSrc = reader.result as string;
-      }
+      if(this.active){
+          reader.onload= ()=> {
+          this.active.img = reader.result as string;
+        }
+      } else {
+          reader.onload= ()=> {
+          this.imageSrc = reader.result as string;
+        }
+      }      
     }
   }
 

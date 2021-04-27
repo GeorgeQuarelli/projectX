@@ -15,7 +15,7 @@
                     <p [style.color]="film.rate >= 7 ? 'limegreen' : 'red' " class="card-text">{{film.rate}}</p>
                 </div>
             </div>
-            <div class="delete d-flex">
+            <div class="delete d-flex shadow">
                 <i (click)="delete($event,film)" class="fa fa-times" aria-hidden="true"></i>
             </div>
         </div>
@@ -49,8 +49,10 @@
                 </button>
             </div>
             <div>
-                <img *ngIf="this.imageSrc" [src]="this.imageSrc" alt="preview" class="preview mb-3">
+                <img *ngIf="active" [src]="active?.img" class="preview mb-3">
+                <img *ngIf="this.imageSrc" [src]="this.imageSrc" class="preview mb-3">
             </div>
+            <input *ngIf="active" [ngModel]="active.img" type="hidden" name="img">
             <input *ngIf="this.imageSrc" [ngModel]="this.imageSrc" type="hidden" name="img">
             <button type="submit" class="btn btn-primary">{{active ? 'Aggiorna' : 'Aggiungi'}}</button>
             <button type="button" class="btn btn-warning ml-4" (click)="reset(f)">Reset</button>
