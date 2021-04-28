@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Film } from 'src/app/model/film';
+import { FilmService } from 'src/app/service/film.service';
+
 
 const ApiUrl = 'http://localhost:3000/film';
 
@@ -11,21 +13,11 @@ const ApiUrl = 'http://localhost:3000/film';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-
-  films: Film[] | any;
-  error: any;
-  active: Film | any;
   imageSrc: string | any;
+@Input() active: Film | any;
+@Input() films: Film[] | any;
 
-  constructor(private http : HttpClient) { }
-
-  getAll(){
-    this.http.get<Film[]>(ApiUrl).subscribe( ( res : Film[] ) => {
-    this.films = res;
-    },
-      err => this.error = err
-    );
-  }
+  constructor(private http : HttpClient, private fimService: FilmService) {}
 
   add(form: NgForm) {
     this.http.post<Film>(`${ApiUrl}`,form.value).subscribe((res:Film) => {
@@ -33,19 +25,6 @@ export class FormComponent implements OnInit {
       form.reset();
       this.imageSrc = null;
     });
-  }
-
-  delete(event: { stopPropagation: () => void; }, film: Film){
-    event.stopPropagation();
-    //const index = this.films.indexOf(film);
-    this.http.delete<Film>(`${ApiUrl}/${film.id}`).subscribe(()=>{
-      const index = this.films.findIndex( (f: { id: number; }) => f.id === film.id);
-      this.films.splice(index,1);
-    });
-  }
-
-  setActive(film: Film) {
-    this.active = film;
   }
   
   reset(form: NgForm) {
@@ -88,6 +67,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAll();
   }
+
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, NgModule, OnInit } from '@angular/core';
-// import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Film } from 'src/app/model/film';
+import { FilmService } from 'src/app/service/film.service';
 
 const ApiUrl = 'http://localhost:3000/film';
 
@@ -15,12 +15,13 @@ export class FilmComponent implements OnInit {
   films: Film[] | any;
   error: any;
   active: Film | any;
-  imageSrc: string | any;
+  
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private fimService: FilmService) { }
 
   getAll(){
-    this.http.get<Film[]>(ApiUrl).subscribe( ( res : Film[] ) => {
+    this.fimService.getAll()
+    .subscribe( ( res : Film[] ) => {
     this.films = res;
     },
       err => this.error = err
@@ -39,8 +40,9 @@ export class FilmComponent implements OnInit {
   setActive(film: Film) {
     this.active = film;
   }
-
+  
   ngOnInit(): void {
     this.getAll();
   }
 }
+

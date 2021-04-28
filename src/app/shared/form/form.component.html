@@ -17,7 +17,7 @@
         <button type="button" class="btn btn-primary mb-3" (click)="selectedFile.click()"> inserisci un immagine
         </button>
     </div>
-    <div>
+    <div class="image-preview">
         <img *ngIf="active" [src]="active?.img" class="preview mb-3">
         <img *ngIf="this.imageSrc" [src]="this.imageSrc" class="preview mb-3">
     </div>

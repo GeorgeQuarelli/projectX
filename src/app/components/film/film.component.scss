@@ -58,14 +58,14 @@
   font-size: 1.5rem;
 }
 
-.active {
-  border: 2px solid limegreen;
-}
-
 .preview {
   height: 120px;
 }
 
 .preview-container {
   display: none;
+}
+
+.active {
+  border: 2px solid limegreen;
 }

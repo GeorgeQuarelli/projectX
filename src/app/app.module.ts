@@ -9,7 +9,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FormComponent } from './components/form/form.component';
+import { FormComponent } from './shared/form/form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { FormComponent } from './components/form/form.component';
     FilmComponent,
     HeaderComponent,
     FooterComponent,
-    FormComponent    
+    FormComponent
   ],
   imports: [
     BrowserModule,
