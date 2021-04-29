@@ -1,0 +1,18 @@
+.navbar-netflix {
+    background-color: rgba(0, 0, 0, 0.877);
+    backdrop-filter: blur(5px);
+    color: white;
+}
+
+.navbar-nav a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    margin-right: 1rem;
+}
+
+.navbar-brand {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: lightgrey;
+}

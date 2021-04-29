@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
 
+/* Importing Bootstrap SCSS file. */
+
+@import "~bootstrap/scss/bootstrap";
 body {
-  background: url(../src/assets/bg.jpg) fixed center;
+    background: url(../src/assets/img/bg.jpg) fixed center;
 }
